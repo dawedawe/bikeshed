@@ -3,6 +3,7 @@ namespace BikeShed
 module Logic =
 
     open System.Collections.Generic
+    open System.Linq
     open Model
     
     let dic = Dictionary<string, Bike>()
@@ -46,7 +47,7 @@ module Logic =
         dic.Add(bike3.Name, bike3)
         dic
 
-    let getBikes () = bikes.Values
+    let getBikes () = bikes.Values.ToList()
 
     let getBike bikeName =
         match bikes.TryGetValue(bikeName) with
