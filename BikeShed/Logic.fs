@@ -9,19 +9,19 @@ module Logic =
     let dic = Dictionary<string, Bike>()
 
     do
-        let bike1 = { Name = "Pinarello"; Color = "black"; }
+        let bike1 = { Name = "pinarello"; Color = "black"; }
         dic.Add(bike1.Name, bike1)
         
-        let bike2 = { Name = "Giant"; Color = "blue"; }
+        let bike2 = { Name = "giant"; Color = "blue"; }
         dic.Add(bike2.Name, bike2)
         
-        let bike3 = { Name = "Canyon"; Color = "red"; }
+        let bike3 = { Name = "canyon"; Color = "red"; }
         dic.Add(bike3.Name, bike3)
         
-        let bike4 = { Name = "Focus"; Color = "white" }; 
+        let bike4 = { Name = "focus"; Color = "white" }; 
         dic.Add(bike4.Name, bike4)
         
-        let bike5 = { Name = "Radon"; Color = "white"; }
+        let bike5 = { Name = "radon"; Color = "white"; }
         dic.Add(bike5.Name, bike5)
 
     type Result<'TSuccess,'TFailure> = 
