@@ -22,10 +22,7 @@ module HttpHandlerTests =
     [<Fact>]
     let ``getBikeHandler works for giant`` () =
         let ctx = Substitute.For<HttpContext>()
-        let app =
-            GET >=> choose [
-                routef "/api/bikes/%s" getBikeHandler
-            ]
+        let app = GET >=> choose [ routef "/api/bikes/%s" getBikeHandler ]
         ctx.Request.Method.ReturnsForAnyArgs "GET" |> ignore
         ctx.Request.Path.ReturnsForAnyArgs (PathString("/api/bikes/giant")) |> ignore
         ctx.Response.Body <- new MemoryStream()
