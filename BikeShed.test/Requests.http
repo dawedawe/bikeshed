@@ -1,0 +1,29 @@
+GET http://localhost:5000/api/bikes
+
+###
+
+POST http://localhost:5000/api/bikes
+content-type: application/json
+
+{
+    "Name": "testbike",
+    "Color": "yellow"
+}
+
+###
+
+GET http://localhost:5000/api/bikes/testbike
+
+###
+
+PUT http://localhost:5000/api/bikes/testbike
+content-type: application/json
+
+{
+    "Name": "testbike",
+    "Color": "changedcolor"
+}
+
+###
+
+DELETE http://localhost:5000/api/bikes/testbike
