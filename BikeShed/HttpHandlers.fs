@@ -6,6 +6,8 @@ module HttpHandlers =
     open Giraffe.HttpContextExtensions
     open Giraffe.HttpHandlers
     open Giraffe.Tasks
+    open Giraffe.Razor.HttpHandlers
+    open Giraffe.Razor.Middleware
     open Model
     open Logic
 
@@ -32,26 +34,26 @@ module HttpHandlers =
                     return! next ctx
                 }
 
-    let getBikeHandler bikeName : HttpHandler =
+    let getBikeHandler name : HttpHandler =
         fun (next : HttpFunc) (ctx : HttpContext) ->
             if ctx.Response.HasStarted then
                 next ctx
             else
                 task {
-                    let result = getBike bikeName
+                    let result = getBike name
                     match result with
                     | Success bike -> return! json bike next ctx
                     | Failure _ -> return! setStatusCode StatusCodes.Status404NotFound next ctx
                 }
     
-    let putBikeHandler bikeName : HttpHandler =
+    let putBikeHandler name : HttpHandler =
         fun (next : HttpFunc) (ctx : HttpContext) ->
             if ctx.Response.HasStarted then
                 next ctx
             else
                 task {
                     let! bike = ctx.BindModel<Bike>()
-                    let result = updateBike bikeName bike
+                    let result = updateBike name bike
                     match result with
                     | Success _ -> ctx.Response.StatusCode <- StatusCodes.Status200OK
                     | Failure e -> ctx.Response.StatusCode <- StatusCodes.Status400BadRequest
@@ -72,3 +74,16 @@ module HttpHandlers =
                                    ctx.WriteText e |> ignore
                     return! next ctx
                 }
+
+    let getBikeRazorViewHandler name : HttpHandler =
+        fun (next : HttpFunc) (ctx : HttpContext) ->
+            if ctx.Response.HasStarted then
+                next ctx
+            else
+                task {
+                    let result = getBike name
+                    match result with
+                    | Success bike -> return! razorHtmlView "Bike" bike next ctx
+                    | Failure _ -> return! setStatusCode StatusCodes.Status404NotFound next ctx
+                }
+    

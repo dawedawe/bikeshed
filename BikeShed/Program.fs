@@ -27,6 +27,7 @@ let webApp =
                 route "/" >=> text "foo"
                 route "/api/bikes" >=> getBikesHandler
                 routef "/api/bikes/%s" getBikeHandler
+                routef "/bikes/%s" getBikeRazorViewHandler
             ]
         POST >=>
             choose [

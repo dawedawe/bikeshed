@@ -30,8 +30,12 @@ module LogicTests =
     [<Fact>]
     let ``deleting a bike works`` () =
         let bikes1 = getBikes()
-        let bike = { Name = "testbike"; Color = "green" }
-        createBike bike |> ignore
+        let bike = { Name = "testbike2"; Color = "green" }
+        createBike bike
+        |> function
+           | Success b -> Assert.Same(b.Name, bike.Name)
+                          Assert.Same(b.Color, bike.Color)
+           | Failure _ -> Assert.True(false)
         deleteBike bike.Name
         |> function
            | Success b -> Assert.Same(b, bike.Name)
