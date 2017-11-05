@@ -29,6 +29,7 @@ let webApp =
                 route "/" >=> htmlFile "/WebRoot/index.html"
                 route "/api/bikes" >=> getBikesHandler
                 routef "/api/bikes/%s" getBikeHandler
+                route "/api/bikesearch" >=> searchHandler
                 routef "/bikes/%s" getBikeRazorViewHandler
                 route "/newbike" >=> renderHtml XmlViews.newBikePage
                 route "/dotliquid" >=> dotLiquid "text/html" bikeTemplate { Name = "LiquidBike"; Color = "pink" }

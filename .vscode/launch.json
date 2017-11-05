@@ -11,7 +11,7 @@
         "preLaunchTask": "build",
         "program": "${workspaceRoot}/BikeShed/bin/Debug/netcoreapp2.0/BikeShed.dll>",
         "args": [],
-        "cwd": "${workspaceRoot}",
+        "cwd": "${workspaceRoot}/BikeShed",
         "stopAtEntry": false,
         "launchBrowser": {
             "enabled": true,
@@ -31,7 +31,7 @@
             "ASPNETCORE_ENVIRONMENT": "Development"
         },
         "sourceFileMap": {
-            "/Views": "${workspaceRoot}/Views"
+            "/Views": "${workspaceRoot}/BikeShed/Views"
         }
     },
         {
@@ -41,7 +41,7 @@
             "preLaunchTask": "build",
             "program": "${workspaceRoot}/BikeShed/bin/Debug/netcoreapp2.0/BikeShed.dll",
             "args": [],
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceRoot}/BikeShed",
             "stopAtEntry": false,
             "console": "internalConsole"
         },

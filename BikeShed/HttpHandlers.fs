@@ -2,6 +2,7 @@ namespace BikeShed
 
 module HttpHandlers =
 
+    open System.Linq
     open Microsoft.AspNetCore.Http
     open Giraffe.HttpContextExtensions
     open Giraffe.HttpHandlers
@@ -84,4 +85,15 @@ module HttpHandlers =
                     match result with
                     | Success bike -> return! razorHtmlView "Bike" bike next ctx
                     | Failure _ -> return! setStatusCode StatusCodes.Status404NotFound next ctx
+                }
+
+    let searchHandler : HttpHandler =
+        fun (next : HttpFunc) (ctx : HttpContext) ->
+            if ctx.Response.HasStarted then
+                next ctx
+            else
+                task {
+                    let s = ctx.BindQueryString<ColorQuery>()
+                    let bikes = getBikes().Where(fun b -> b.Color = s.Color).ToList()
+                    return! json bikes next ctx
                 }

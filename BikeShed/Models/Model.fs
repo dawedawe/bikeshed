@@ -8,3 +8,10 @@ module Model =
             Name : string
             Color : string
         }
+
+    
+    [<CLIMutable>]
+    type ColorQuery =
+        {
+            Color : string
+        }
