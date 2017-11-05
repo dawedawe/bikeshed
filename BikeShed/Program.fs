@@ -28,6 +28,7 @@ let webApp =
                 route "/api/bikes" >=> getBikesHandler
                 routef "/api/bikes/%s" getBikeHandler
                 routef "/bikes/%s" getBikeRazorViewHandler
+                route "/newbike" >=> renderHtml XmlViews.newBikePage
             ]
         POST >=>
             choose [

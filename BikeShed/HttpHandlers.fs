@@ -7,7 +7,6 @@ module HttpHandlers =
     open Giraffe.HttpHandlers
     open Giraffe.Tasks
     open Giraffe.Razor.HttpHandlers
-    open Giraffe.Razor.Middleware
     open Model
     open Logic
 
@@ -86,4 +85,3 @@ module HttpHandlers =
                     | Success bike -> return! razorHtmlView "Bike" bike next ctx
                     | Failure _ -> return! setStatusCode StatusCodes.Status404NotFound next ctx
                 }
-    
