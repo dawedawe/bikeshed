@@ -9,12 +9,14 @@ open Microsoft.AspNetCore.Hosting
 open Microsoft.AspNetCore.Http
 open Microsoft.Extensions.Logging
 open Microsoft.Extensions.DependencyInjection
+open Giraffe.DotLiquid.HttpHandlers
 open Giraffe.HttpHandlers
 open Giraffe.Middleware
 open Giraffe.Razor.HttpHandlers
 open Giraffe.Razor.Middleware
 open BikeShed.Model
 open BikeShed.HttpHandlers
+open BikeShed.DotLiquidTemplates
 
 // ---------------------------------
 // Web app
@@ -24,11 +26,12 @@ let webApp =
     choose [
         GET >=>
             choose [
-                route "/" >=> text "foo"
+                route "/" >=> htmlFile "/WebRoot/index.html"
                 route "/api/bikes" >=> getBikesHandler
                 routef "/api/bikes/%s" getBikeHandler
                 routef "/bikes/%s" getBikeRazorViewHandler
                 route "/newbike" >=> renderHtml XmlViews.newBikePage
+                route "/dotliquid" >=> dotLiquid "text/html" bikeTemplate { Name = "LiquidBike"; Color = "pink" }
             ]
         POST >=>
             choose [
