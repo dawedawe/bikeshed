@@ -6,21 +6,17 @@ module Logic =
     open System.Linq
     open Model
     
-    let dic = Dictionary<string, Bike>()
+    let private dic = Dictionary<string, Bike>()
 
     do
         let bike1 = { Name = "pinarello"; Color = "black"; }
         dic.Add(bike1.Name, bike1)
-        
         let bike2 = { Name = "giant"; Color = "blue"; }
         dic.Add(bike2.Name, bike2)
-        
         let bike3 = { Name = "canyon"; Color = "red"; }
         dic.Add(bike3.Name, bike3)
-        
         let bike4 = { Name = "focus"; Color = "white" }; 
         dic.Add(bike4.Name, bike4)
-        
         let bike5 = { Name = "radon"; Color = "white"; }
         dic.Add(bike5.Name, bike5)
 
@@ -38,14 +34,7 @@ module Logic =
         regex.Match(s).Success
 
     let private bikes = 
-        let dic = Dictionary<string, Bike>()
-        let bike1 = { Name = "pinarello"; Color = "black"; }
-        dic.Add(bike1.Name, bike1)
-        let bike2 = { Name = "giant"; Color = "blue"; }
-        dic.Add(bike2.Name, bike2)
-        let bike3 = { Name = "canyon"; Color = "red"; }
-        dic.Add(bike3.Name, bike3)
-        dic
+         dic
 
     let getBikes () = bikes.Values.ToList()
 
