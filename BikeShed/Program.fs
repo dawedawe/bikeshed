@@ -26,7 +26,7 @@ let webApp =
     choose [
         GET >=>
             choose [
-                route "/" >=> htmlFile "/WebRoot/index.html"
+                route "/" >=> htmlFile "WebRoot/index.html"
                 route "/api/bikes" >=> getBikesHandler
                 routef "/api/bikes/%s" getBikeHandler
                 route "/api/bikesearch" >=> searchHandler
