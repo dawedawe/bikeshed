@@ -33,8 +33,8 @@ module HttpHandlerTests =
             | None     -> Assert.True(false)
             | Some ctx ->
                 let body = getBody ctx
-                Assert.True(body.Contains("\"Name\":\"giant\""))
-                Assert.True(body.Contains("\"Color\":\"blue\""))
+                Assert.True(body.Contains("\"name\":\"giant\""))
+                Assert.True(body.Contains("\"color\":\"blue\""))
         }
 
     [<Fact>]
